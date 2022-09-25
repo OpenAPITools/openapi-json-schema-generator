@@ -21,6 +21,8 @@ trap cleanup EXIT
 if [ "$NODE_INDEX" = "1" ]; then
   echo "Running node $NODE_INDEX"
 
+  ./bin/utils/ensure-up-to-date
+
 elif [ "$NODE_INDEX" = "2" ]; then
   echo "Running node $NODE_INDEX"
 
