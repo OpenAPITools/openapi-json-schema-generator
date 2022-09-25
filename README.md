@@ -322,7 +322,7 @@ You can build a client against the [Petstore API](https://raw.githubusercontent.
 
 (On Windows, please install [GIT Bash for Windows](https://gitforwindows.org/) to run the command above)
 
-This script uses the default library, which is `okhttp-gson`. It will run the generator with this command:
+This script will run the generator with this command:
 
 ```sh
 java -jar modules/openapi-json-schema-generator-cli/target/openapi-json-schema-generator-cli.jar generate \
@@ -333,7 +333,7 @@ java -jar modules/openapi-json-schema-generator-cli/target/openapi-json-schema-g
   -o samples/openapi3/client/petstore/python
 ```
 
-with a number of options. [The java options are documented here.](docs/generators/java.md)
+with a number of options. [The python options are documented here.](docs/generators/python.md)
 
 You can also get the options with the `help generate` command (below only shows partial results):
 
