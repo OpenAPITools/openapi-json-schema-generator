@@ -1,5 +1,7 @@
 <h1 align="center">OpenAPI JSON Schema Generator</h1>
 
+| **IMPORTANT: before the first release, one will need to build the project locally to use the enhancemnts, bug fixes in the latest master** |
+| --- |
 
 <div align="center">
 
@@ -18,7 +20,7 @@
 </div>
 
 ## Overview
-OpenAPI JSON Schema Generator allows generation of API client libraries (SDK generation) with a focus on JSON Schema automatically given an [OpenAPI Spec](https://github.com/OAI/OpenAPI-Specification) (both 2.0 and 3.0 are supported). Currently, the following languages/frameworks are supported:
+OpenAPI JSON Schema Generator allows auto-generation of API client libraries (SDK generation) with a focus on JSON Schema given an [OpenAPI Spec](https://github.com/OAI/OpenAPI-Specification) (both 2.0 and 3.0 are supported). Currently, the following languages/frameworks are supported:
 
 - python
 
@@ -44,12 +46,9 @@ OpenAPI JSON Schema Generator allows generation of API client libraries (SDK gen
     - [3.4 - License Information on Generated Code](#34---license-information-on-generated-code)
     - [3.5 - IDE Integration](#35---ide-integration)
   - [4 - Companies/Projects using OpenAPI JSON Schema Generator](#4---companiesprojects-using-openapi-json-schema-generator)
-  - [5 - Presentations/Videos/Tutorials/Books](#5---presentationsvideostutorialsbooks)
-  - [6 - About Us](#6---about-us)
-    - [6.1 - OpenAPI JSON Schema Generator Core Team](#61---openapi-json-schema-generator-core-team)
-    - [6.2 - OpenAPI JSON Schema Generator Technical Committee](#62---openapi-json-schema-generator-technical-committee)
-    - [6.3 - History of OpenAPI JSON Schema Generator](#63---history-of-openapi-json-schema-generator)
-  - [7 - License](#7---license)
+  - [5 - About Us](#5---about-us)
+    - [5.3 - History of OpenAPI JSON Schema Generator](#53---history-of-openapi-json-schema-generator)
+  - [6 - License](#6---license)
 
 ## [1 - Installation](#table-of-contents)
 
@@ -176,11 +175,11 @@ Example:
 ```sh
 docker run --rm -v "${PWD}:/local" openapitools/openapi-json-schema-generator-cli generate \
     -i https://raw.githubusercontent.com/openapitools/openapi-json-schema-generator/master/modules/openapi-json-schema-generator/src/test/resources/3_0/petstore.yaml \
-    -g go \
-    -o /local/out/go
+    -g python \
+    -o /local/out/python
 ```
 
-The generated code will be located under `./out/go` in the current directory.
+The generated code will be located under `./out/python` in the current directory.
 
 #### OpenAPI JSON Schema Generator Online Docker Image
 
@@ -201,7 +200,7 @@ GEN_IP=$(docker inspect --format '{{.NetworkSettings.IPAddress}}'  $CID)
 # Execute an HTTP request to generate a Ruby client
 > curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
 -d '{"openAPIUrl": "https://raw.githubusercontent.com/openapitools/openapi-json-schema-generator/master/modules/openapi-json-schema-generator/src/test/resources/3_0/petstore.yaml"}' \
-'http://localhost:8888/api/gen/clients/ruby'
+'http://localhost:8888/api/gen/clients/python'
 
 {"code":"c2d483.3.4672-40e9-91df-b9ffd18d22b8","link":"http://localhost:8888/api/gen/download/c2d483.3.4672-40e9-91df-b9ffd18d22b8"}
 
@@ -235,9 +234,9 @@ Once built, `run-in-docker.sh` will act as an executable for openapi-json-schema
 ```sh
 ./run-in-docker.sh help # Executes 'help' command for openapi-json-schema-generator-cli
 ./run-in-docker.sh list # Executes 'list' command for openapi-json-schema-generator-cli
-./run-in-docker.sh /gen/bin/go-petstore.sh  # Builds the Go client
+./run-in-docker.sh /gen/bin/python-petstore.sh  # Builds the Go client
 ./run-in-docker.sh generate -i modules/openapi-json-schema-generator/src/test/resources/3_0/petstore.yaml \
-    -g go -o /gen/out/go-petstore -p packageName=petstore # generates go client, outputs locally to ./out/go-petstore
+    -g go -o /gen/out/python-petstore -p packageName=petstore_api # generates python client, outputs locally to ./out/python-petstore
 ```
 
 ##### Troubleshooting
