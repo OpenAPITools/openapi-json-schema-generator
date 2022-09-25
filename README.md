@@ -1,6 +1,6 @@
 <h1 align="center">OpenAPI JSON Schema Generator</h1>
 
-| **IMPORTANT: before the first release, one will need to build the project locally to use the enhancemnts, bug fixes in the latest master** |
+| **IMPORTANT: before the first release, one will need to build the project locally to use the enhancements, bug fixes in the latest master** |
 | --- |
 
 <div align="center">
