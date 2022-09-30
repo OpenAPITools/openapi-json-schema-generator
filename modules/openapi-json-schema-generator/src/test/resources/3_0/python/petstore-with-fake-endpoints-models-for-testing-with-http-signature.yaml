@@ -2942,11 +2942,6 @@ components:
           format: double
         float:
           format: float
-#    "\!reference":
-#      type: array
-#      items:
-#        type: string
-#        minLength: 1
     FromSchema:
       type: object
       properties:
@@ -2959,8 +2954,8 @@ components:
       properties:
         from:
           $ref: "#/components/schemas/FromSchema"
-#        "!reference":
-#          $ref: "#/components/schemas/!reference"
+        "!reference":
+          $ref: "#/components/schemas/ArrayWithValidationsInItems"
       required:
         - from
-#        - !reference
+        - "!reference"

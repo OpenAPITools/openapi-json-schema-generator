@@ -35,6 +35,7 @@ class ObjectWithInvalidNamedRefedProperties(
 
     class MetaOapg:
         required = {
+            "!reference",
             "from",
         }
         
@@ -43,8 +44,13 @@ class ObjectWithInvalidNamedRefedProperties(
             @staticmethod
             def _from() -> typing.Type['FromSchema']:
                 return FromSchema
+        
+            @staticmethod
+            def reference() -> typing.Type['ArrayWithValidationsInItems']:
+                return ArrayWithValidationsInItems
             __annotations__ = {
                 "from": _from,
+                "!reference": reference,
             }
     
     
@@ -52,9 +58,12 @@ class ObjectWithInvalidNamedRefedProperties(
     def __getitem__(self, name: typing_extensions.Literal["from"]) -> 'FromSchema': ...
     
     @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["!reference"]) -> 'ArrayWithValidationsInItems': ...
+    
+    @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["from", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["from", "!reference", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
@@ -63,9 +72,12 @@ class ObjectWithInvalidNamedRefedProperties(
     def get_item_oapg(self, name: typing_extensions.Literal["from"]) -> 'FromSchema': ...
     
     @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["!reference"]) -> 'ArrayWithValidationsInItems': ...
+    
+    @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["from", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["from", "!reference", ], str]):
         return super().get_item_oapg(name)
     
 
@@ -82,4 +94,5 @@ class ObjectWithInvalidNamedRefedProperties(
             **kwargs,
         )
 
+from petstore_api.model.array_with_validations_in_items import ArrayWithValidationsInItems
 from petstore_api.model.from_schema import FromSchema
