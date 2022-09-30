@@ -1,0 +1,31 @@
+# coding: utf-8
+
+# flake8: noqa
+
+# import all models into this package
+# if you have many models here with many references from one model to another this may
+# raise a RecursionError
+# to avoid this, import only the models that you directly need like:
+# from from petstore_api.model.pet import Pet
+# or import this package, but before doing it, use:
+# import sys
+# sys.setrecursionlimit(n)
+
+from petstore_api.model.bearer_response import BearerResponse
+from petstore_api.model.body_auth_database_login_user_auth_database_login_post import BodyAuthDatabaseLoginUserAuthDatabaseLoginPost
+from petstore_api.model.body_auth_jwt_login_user_auth_jwt_login_post import BodyAuthJwtLoginUserAuthJwtLoginPost
+from petstore_api.model.body_verify_request_token_user_request_verify_token_post import BodyVerifyRequestTokenUserRequestVerifyTokenPost
+from petstore_api.model.body_verify_verify_user_verify_post import BodyVerifyVerifyUserVerifyPost
+from petstore_api.model.create_dataset import CreateDataset
+from petstore_api.model.error_model import ErrorModel
+from petstore_api.model.http_validation_error import HTTPValidationError
+from petstore_api.model.syndb_api_neurodata_models_animal_leaf import SyndbApiNeurodataModelsAnimalLeaf
+from petstore_api.model.syndb_api_neurodata_models_brain_structure_leaf import SyndbApiNeurodataModelsBrainStructureLeaf
+from petstore_api.model.syndb_api_neurodata_models_dataset_leaf import SyndbApiNeurodataModelsDatasetLeaf
+from petstore_api.model.syndb_api_neurodata_models_dataset_leaf_list import SyndbApiNeurodataModelsDatasetLeafList
+from petstore_api.model.syndb_api_neurodata_models_microscopy_method_leaf import SyndbApiNeurodataModelsMicroscopyMethodLeaf
+from petstore_api.model.syndb_api_neurodata_models_project_leaf import SyndbApiNeurodataModelsProjectLeaf
+from petstore_api.model.syndb_api_neurodata_models_targeted_mutation_leaf import SyndbApiNeurodataModelsTargetedMutationLeaf
+from petstore_api.model.user_create import UserCreate
+from petstore_api.model.user_read import UserRead
+from petstore_api.model.validation_error import ValidationError

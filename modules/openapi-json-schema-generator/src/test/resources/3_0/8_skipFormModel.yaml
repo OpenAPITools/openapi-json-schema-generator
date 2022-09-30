@@ -1,0 +1,759 @@
+openapi: 3.0.2
+info:
+  title: Synapse DB
+  version: 0.4.1
+paths:
+  /user/auth/jwt/login:
+    post:
+      tags:
+        - user
+        - jwt
+        - auth
+      summary: Auth:Jwt.Login
+      operationId: auth_jwt_login_user_auth_jwt_login_post
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Body_auth_jwt_login_user_auth_jwt_login_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BearerResponse'
+              example:
+                access_token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOTIyMWZmYzktNjQwZi00MzcyLTg2ZDMtY2U2NDJjYmE1NjAzIiwiYXVkIjoiZmFzdGFwaS11c2VyczphdXRoIiwiZXhwIjoxNTcxNTA0MTkzfQ.M10bjOe45I5Ncu_uXvOmVV8QxnL-nZfcH96U90JaocI
+                token_type: bearer
+        '404':
+          description: Not found
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+              examples:
+                LOGIN_BAD_CREDENTIALS:
+                  summary: Bad credentials or the user is inactive.
+                  value:
+                    detail: LOGIN_BAD_CREDENTIALS
+                LOGIN_USER_NOT_VERIFIED:
+                  summary: The user is not verified.
+                  value:
+                    detail: LOGIN_USER_NOT_VERIFIED
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /user/auth/jwt/logout:
+    post:
+      tags:
+        - user
+        - jwt
+        - auth
+      summary: Auth:Jwt.Logout
+      operationId: auth_jwt_logout_user_auth_jwt_logout_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '401':
+          description: Missing token or inactive user.
+      security:
+        - APIKeyCookie: []
+        - OAuth2PasswordBearer: []
+  /user/auth/database/login:
+    post:
+      tags:
+        - user
+        - database
+        - auth
+      summary: Auth:Database.Login
+      operationId: auth_database_login_user_auth_database_login_post
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Body_auth_database_login_user_auth_database_login_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+              examples:
+                LOGIN_BAD_CREDENTIALS:
+                  summary: Bad credentials or the user is inactive.
+                  value:
+                    detail: LOGIN_BAD_CREDENTIALS
+                LOGIN_USER_NOT_VERIFIED:
+                  summary: The user is not verified.
+                  value:
+                    detail: LOGIN_USER_NOT_VERIFIED
+        '204':
+          description: No Content
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /user/auth/database/logout:
+    post:
+      tags:
+        - user
+        - database
+        - auth
+      summary: Auth:Database.Logout
+      operationId: auth_database_logout_user_auth_database_logout_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '401':
+          description: Missing token or inactive user.
+      security:
+        - APIKeyCookie: []
+        - OAuth2PasswordBearer: []
+  /user/register:
+    post:
+      tags:
+        - user
+      summary: Register:Register
+      operationId: register_register_user_register_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRead'
+        '404':
+          description: Not found
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+              examples:
+                REGISTER_USER_ALREADY_EXISTS:
+                  summary: A user with this email already exists.
+                  value:
+                    detail: REGISTER_USER_ALREADY_EXISTS
+                REGISTER_INVALID_PASSWORD:
+                  summary: Password validation failed.
+                  value:
+                    detail:
+                      code: REGISTER_INVALID_PASSWORD
+                      reason: Password should beat least 3 characters
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /user/request-verify-token:
+    post:
+      tags:
+        - user
+      summary: Verify:Request-Token
+      operationId: verify_request_token_user_request_verify_token_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body_verify_request_token_user_request_verify_token_post'
+        required: true
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /user/verify:
+    post:
+      tags:
+        - user
+      summary: Verify:Verify
+      operationId: verify_verify_user_verify_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body_verify_verify_user_verify_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRead'
+        '404':
+          description: Not found
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+              examples:
+                VERIFY_USER_BAD_TOKEN:
+                  summary: Bad token, not existing user ornot the e-mail currently
+                    set for the user.
+                  value:
+                    detail: VERIFY_USER_BAD_TOKEN
+                VERIFY_USER_ALREADY_VERIFIED:
+                  summary: The user is already verified.
+                  value:
+                    detail: VERIFY_USER_ALREADY_VERIFIED
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /user/profile.json:
+    get:
+      tags:
+        - user
+      summary: User Profile
+      operationId: user_profile_user_profile_json_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRead'
+        '404':
+          description: Not found
+      security:
+        - APIKeyCookie: []
+        - OAuth2PasswordBearer: []
+  /stargate/neurodata/stargate/upload/existing/{dataset_id}:
+    get:
+      tags:
+        - stargate
+      summary: Upload Existing Dataset
+      operationId: upload_existing_dataset_stargate_neurodata_stargate_upload_existing__dataset_id__get
+      parameters:
+        - required: true
+          schema:
+            title: Dataset Id
+            type: string
+            format: uuid
+          name: dataset_id
+          in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - APIKeyCookie: []
+        - OAuth2PasswordBearer: []
+  /stargate/neurodata/stargate/upload/new:
+    post:
+      tags:
+        - stargate
+      summary: Upload New Dataset
+      operationId: upload_new_dataset_stargate_neurodata_stargate_upload_new_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataset'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - APIKeyCookie: []
+        - OAuth2PasswordBearer: []
+  /stargate/neurodata/stargate/read_neuro_data.json:
+    get:
+      tags:
+        - stargate
+      summary: Read Neuro Data
+      operationId: read_neuro_data_stargate_neurodata_stargate_read_neuro_data_json_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+      security:
+        - APIKeyCookie: []
+        - OAuth2PasswordBearer: []
+  /stargate/neurodata/stargate/jwks.json:
+    get:
+      tags:
+        - stargate
+      summary: Jwks
+      operationId: jwks_stargate_neurodata_stargate_jwks_json_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+  /stargate/neurodata/dataset/my_datasets:
+    get:
+      tags:
+        - stargate
+        - data
+      summary: User Datasets
+      operationId: user_datasets_stargate_neurodata_dataset_my_datasets_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/syndb_api.neurodata.models.Dataset.leaf_list'
+        '404':
+          description: Not found
+      security:
+        - APIKeyCookie: []
+        - OAuth2PasswordBearer: []
+  /stargate/neurodata/dataset/my_projects:
+    get:
+      tags:
+        - stargate
+        - data
+      summary: User Projects
+      operationId: user_projects_stargate_neurodata_dataset_my_projects_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+      security:
+        - APIKeyCookie: []
+        - OAuth2PasswordBearer: []
+  /:
+    get:
+      summary: Redirect
+      operationId: redirect__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+components:
+  schemas:
+    BearerResponse:
+      title: BearerResponse
+      required:
+        - access_token
+        - token_type
+      type: object
+      properties:
+        access_token:
+          title: Access Token
+          type: string
+        token_type:
+          title: Token Type
+          type: string
+    Body_auth_database_login_user_auth_database_login_post:
+      title: Body_auth_database_login_user_auth_database_login_post
+      required:
+        - username
+        - password
+      type: object
+      properties:
+        grant_type:
+          title: Grant Type
+          pattern: password
+          type: string
+        username:
+          title: Username
+          type: string
+        password:
+          title: Password
+          type: string
+        scope:
+          title: Scope
+          type: string
+          default: ''
+        client_id:
+          title: Client Id
+          type: string
+        client_secret:
+          title: Client Secret
+          type: string
+    Body_auth_jwt_login_user_auth_jwt_login_post:
+      title: Body_auth_jwt_login_user_auth_jwt_login_post
+      required:
+        - username
+        - password
+      type: object
+      properties:
+        grant_type:
+          title: Grant Type
+          pattern: password
+          type: string
+        username:
+          title: Username
+          type: string
+        password:
+          title: Password
+          type: string
+        scope:
+          title: Scope
+          type: string
+          default: ''
+        client_id:
+          title: Client Id
+          type: string
+        client_secret:
+          title: Client Secret
+          type: string
+    Body_verify_request_token_user_request_verify_token_post:
+      title: Body_verify_request_token_user_request_verify_token_post
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          title: Email
+          type: string
+          format: email
+    Body_verify_verify_user_verify_post:
+      title: Body_verify_verify_user_verify_post
+      required:
+        - token
+      type: object
+      properties:
+        token:
+          title: Token
+          type: string
+    CreateDataset:
+      title: ReadOnlyDataset
+      required:
+        - dataset_size
+      type: object
+      properties:
+        upload_complete:
+          title: Upload Complete
+          type: boolean
+          default: false
+        dataset_size:
+          title: Dataset Size
+          maximum: 9.223372036854776e+18
+          minimum: -9.223372036854776e+18
+          type: integer
+        label:
+          title: Label
+          maxLength: 50
+          type: string
+        notes:
+          title: Notes
+          type: string
+          nullable: true
+        project:
+          $ref: '#/components/schemas/syndb_api.neurodata.models.Project.leaf'
+        animal:
+          $ref: '#/components/schemas/syndb_api.neurodata.models.Animal.leaf'
+        brain_structure:
+          $ref: '#/components/schemas/syndb_api.neurodata.models.BrainStructure.leaf'
+        targeted_mutation:
+          $ref: '#/components/schemas/syndb_api.neurodata.models.TargetedMutation.leaf'
+        microscopy_method:
+          $ref: '#/components/schemas/syndb_api.neurodata.models.MicroscopyMethod.leaf'
+      additionalProperties: false
+    ErrorModel:
+      title: ErrorModel
+      required:
+        - detail
+      type: object
+      properties:
+        detail:
+          title: Detail
+          anyOf:
+            - type: string
+            - type: object
+              additionalProperties:
+                type: string
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    UserCreate:
+      title: UserCreate
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          title: Email
+          type: string
+          format: email
+        password:
+          title: Password
+          type: string
+        is_active:
+          title: Is Active
+          type: boolean
+          default: true
+        is_superuser:
+          title: Is Superuser
+          type: boolean
+          default: false
+        is_verified:
+          title: Is Verified
+          type: boolean
+          default: false
+    UserRead:
+      title: UserRead
+      required:
+        - email
+      type: object
+      properties:
+        id:
+          title: Id
+        email:
+          title: Email
+          type: string
+          format: email
+        is_active:
+          title: Is Active
+          type: boolean
+          default: true
+        is_superuser:
+          title: Is Superuser
+          type: boolean
+          default: false
+        is_verified:
+          title: Is Verified
+          type: boolean
+          default: false
+      description: Base User model.
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+    syndb_api.neurodata.models.Animal.leaf:
+      title: Animal
+      required:
+        - species
+      type: object
+      properties:
+        species:
+          title: Species
+          maxLength: 200
+          type: string
+      additionalProperties: false
+    syndb_api.neurodata.models.BrainStructure.leaf:
+      title: BrainStructure
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          title: Name
+          maxLength: 200
+          type: string
+      additionalProperties: false
+    syndb_api.neurodata.models.Dataset.leaf:
+      title: Dataset
+      required:
+        - dataset_size
+        - animal_species
+        - targeted_mutation_names
+        - microscopy_method_name
+        - brain_structure_name
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+        upload_complete:
+          title: Upload Complete
+          type: boolean
+          default: false
+        dataset_size:
+          title: Dataset Size
+          maximum: 9.223372036854776e+18
+          minimum: -9.223372036854776e+18
+          type: integer
+        label:
+          title: Label
+          maxLength: 50
+          type: string
+        notes:
+          title: Notes
+          type: string
+          nullable: true
+        animal_species:
+          title: Animal Species
+          type: string
+        targeted_mutation_names:
+          title: Targeted Mutation Names
+          type: array
+          items:
+            type: string
+        microscopy_method_name:
+          title: Microscopy Method Name
+          type: string
+        brain_structure_name:
+          title: Brain Structure Name
+          type: string
+      additionalProperties: false
+    syndb_api.neurodata.models.Dataset.leaf_list:
+      title: Dataset_list
+      type: array
+      items:
+        $ref: '#/components/schemas/syndb_api.neurodata.models.Dataset.leaf'
+    syndb_api.neurodata.models.MicroscopyMethod.leaf:
+      title: MicroscopyMethod
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          title: Name
+          maxLength: 200
+          type: string
+      additionalProperties: false
+    syndb_api.neurodata.models.Project.leaf:
+      title: Project
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+        doi:
+          title: Doi
+          maxLength: 200
+          type: string
+          nullable: true
+        label:
+          title: Label
+          maxLength: 50
+          type: string
+        notes:
+          title: Notes
+          type: string
+          nullable: true
+      additionalProperties: false
+    syndb_api.neurodata.models.TargetedMutation.leaf:
+      title: TargetedMutation
+      required:
+        - gene
+        - method
+      type: object
+      properties:
+        gene:
+          title: Gene
+          maxLength: 80
+          type: string
+        is_knock_in:
+          title: Is Knock In
+          type: boolean
+          default: false
+        method:
+          title: Method
+          maxLength: 200
+          type: string
+      additionalProperties: false
+  securitySchemes:
+    APIKeyCookie:
+      type: apiKey
+      in: cookie
+      name: fastapiusersauth
+    OAuth2PasswordBearer:
+      type: oauth2
+      flows:
+        password:
+          scopes: {}
+          tokenUrl: auth/jwt/login
