@@ -1,0 +1,3 @@
+rootProject.name = 'openapi-json-schema-generator-gradle-plugin'
+enableFeaturePreview('STABLE_PUBLISHING')
+
