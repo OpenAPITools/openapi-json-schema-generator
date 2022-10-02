@@ -72,9 +72,36 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
 
+    @typing.overload
     def _classname_oapg(
-        self: api_client.Api,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, ],
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[False] = False,
+    ) -> typing.Union[
+        ApiResponseFor200,
+    ]:
+        ...
+
+    @typing.overload
+    def _classname_oapg(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[True] = True,
+    ) -> api_client.ApiResponseWithoutDeserialization:
+        ...
+
+    @typing.overload
+    def _classname_oapg(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
         content_type: str = 'application/json',
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -82,8 +109,19 @@ class BaseApi(api_client.Api):
         skip_deserialization: bool = False,
     ) -> typing.Union[
         ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization
+        api_client.ApiResponseWithoutDeserialization,
     ]:
+        ...
+
+    def _classname_oapg(
+        self,
+        body,
+        content_type = 'application/json',
+        accept_content_types = _all_accept_content_types,
+        stream = False,
+        timeout = None,
+        skip_deserialization = False,
+    ):
         """
         To test class name in snake case
         :param skip_deserialization: If true then api_response.response will be set but
@@ -138,9 +176,36 @@ class BaseApi(api_client.Api):
 class Classname(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
+    @typing.overload
     def classname(
-        self: BaseApi,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, ],
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[False] = False,
+    ) -> typing.Union[
+        ApiResponseFor200,
+    ]:
+        ...
+
+    @typing.overload
+    def classname(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[True] = True,
+    ) -> api_client.ApiResponseWithoutDeserialization:
+        ...
+
+    @typing.overload
+    def classname(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
         content_type: str = 'application/json',
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -148,8 +213,19 @@ class Classname(BaseApi):
         skip_deserialization: bool = False,
     ) -> typing.Union[
         ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization
+        api_client.ApiResponseWithoutDeserialization,
     ]:
+        ...
+
+    def classname(
+        self,
+        body,
+        content_type = 'application/json',
+        accept_content_types = _all_accept_content_types,
+        stream = False,
+        timeout = None,
+        skip_deserialization = False,
+    ):
         return self._classname_oapg(
             body=body,
             content_type=content_type,
@@ -163,9 +239,36 @@ class Classname(BaseApi):
 class ApiForpatch(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
+    @typing.overload
     def patch(
-        self: BaseApi,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, ],
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[False] = False,
+    ) -> typing.Union[
+        ApiResponseFor200,
+    ]:
+        ...
+
+    @typing.overload
+    def patch(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[True] = True,
+    ) -> api_client.ApiResponseWithoutDeserialization:
+        ...
+
+    @typing.overload
+    def patch(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
         content_type: str = 'application/json',
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -173,8 +276,19 @@ class ApiForpatch(BaseApi):
         skip_deserialization: bool = False,
     ) -> typing.Union[
         ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization
+        api_client.ApiResponseWithoutDeserialization,
     ]:
+        ...
+
+    def patch(
+        self,
+        body,
+        content_type = 'application/json',
+        accept_content_types = _all_accept_content_types,
+        stream = False,
+        timeout = None,
+        skip_deserialization = False,
+    ):
         return self._classname_oapg(
             body=body,
             content_type=content_type,

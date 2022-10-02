@@ -78,15 +78,46 @@ _response_for_404 = api_client.OpenApiResponse(
 
 class BaseApi(api_client.Api):
 
+    @typing.overload
     def _delete_user_oapg(
-        self: api_client.Api,
+        self,
+        path_params: RequestPathParams = frozendict.frozendict(),
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[False] = False,
+    ) -> typing.Union[
+    ]:
+        ...
+
+    @typing.overload
+    def _delete_user_oapg(
+        self,
+        path_params: RequestPathParams = frozendict.frozendict(),
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[True] = True,
+    ) -> api_client.ApiResponseWithoutDeserialization:
+        ...
+
+    @typing.overload
+    def _delete_user_oapg(
+        self,
         path_params: RequestPathParams = frozendict.frozendict(),
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ) -> typing.Union[
-        api_client.ApiResponseWithoutDeserialization
+        api_client.ApiResponseWithoutDeserialization,
     ]:
+        ...
+
+    def _delete_user_oapg(
+        self,
+        path_params = frozendict.frozendict(),
+        stream = False,
+        timeout = None,
+        skip_deserialization = False,
+    ):
         """
         Delete user
         :param skip_deserialization: If true then api_response.response will be set but
@@ -135,15 +166,46 @@ class BaseApi(api_client.Api):
 class DeleteUser(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
+    @typing.overload
     def delete_user(
-        self: BaseApi,
+        self,
+        path_params: RequestPathParams = frozendict.frozendict(),
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[False] = False,
+    ) -> typing.Union[
+    ]:
+        ...
+
+    @typing.overload
+    def delete_user(
+        self,
+        path_params: RequestPathParams = frozendict.frozendict(),
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[True] = True,
+    ) -> api_client.ApiResponseWithoutDeserialization:
+        ...
+
+    @typing.overload
+    def delete_user(
+        self,
         path_params: RequestPathParams = frozendict.frozendict(),
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ) -> typing.Union[
-        api_client.ApiResponseWithoutDeserialization
+        api_client.ApiResponseWithoutDeserialization,
     ]:
+        ...
+
+    def delete_user(
+        self,
+        path_params = frozendict.frozendict(),
+        stream = False,
+        timeout = None,
+        skip_deserialization = False,
+    ):
         return self._delete_user_oapg(
             path_params=path_params,
             stream=stream,
@@ -155,15 +217,46 @@ class DeleteUser(BaseApi):
 class ApiFordelete(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
+    @typing.overload
     def delete(
-        self: BaseApi,
+        self,
+        path_params: RequestPathParams = frozendict.frozendict(),
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[False] = False,
+    ) -> typing.Union[
+    ]:
+        ...
+
+    @typing.overload
+    def delete(
+        self,
+        path_params: RequestPathParams = frozendict.frozendict(),
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[True] = True,
+    ) -> api_client.ApiResponseWithoutDeserialization:
+        ...
+
+    @typing.overload
+    def delete(
+        self,
         path_params: RequestPathParams = frozendict.frozendict(),
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ) -> typing.Union[
-        api_client.ApiResponseWithoutDeserialization
+        api_client.ApiResponseWithoutDeserialization,
     ]:
+        ...
+
+    def delete(
+        self,
+        path_params = frozendict.frozendict(),
+        stream = False,
+        timeout = None,
+        skip_deserialization = False,
+    ):
         return self._delete_user_oapg(
             path_params=path_params,
             stream=stream,

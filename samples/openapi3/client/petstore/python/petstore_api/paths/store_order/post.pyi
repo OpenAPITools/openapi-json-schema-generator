@@ -81,9 +81,36 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
 
+    @typing.overload
     def _place_order_oapg(
-        self: api_client.Api,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, ],
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[False] = False,
+    ) -> typing.Union[
+        ApiResponseFor200,
+    ]:
+        ...
+
+    @typing.overload
+    def _place_order_oapg(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[True] = True,
+    ) -> api_client.ApiResponseWithoutDeserialization:
+        ...
+
+    @typing.overload
+    def _place_order_oapg(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
         content_type: str = 'application/json',
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -91,8 +118,19 @@ class BaseApi(api_client.Api):
         skip_deserialization: bool = False,
     ) -> typing.Union[
         ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization
+        api_client.ApiResponseWithoutDeserialization,
     ]:
+        ...
+
+    def _place_order_oapg(
+        self,
+        body,
+        content_type = 'application/json',
+        accept_content_types = _all_accept_content_types,
+        stream = False,
+        timeout = None,
+        skip_deserialization = False,
+    ):
         """
         Place an order for a pet
         :param skip_deserialization: If true then api_response.response will be set but
@@ -146,9 +184,36 @@ class BaseApi(api_client.Api):
 class PlaceOrder(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
+    @typing.overload
     def place_order(
-        self: BaseApi,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, ],
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[False] = False,
+    ) -> typing.Union[
+        ApiResponseFor200,
+    ]:
+        ...
+
+    @typing.overload
+    def place_order(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[True] = True,
+    ) -> api_client.ApiResponseWithoutDeserialization:
+        ...
+
+    @typing.overload
+    def place_order(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
         content_type: str = 'application/json',
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -156,8 +221,19 @@ class PlaceOrder(BaseApi):
         skip_deserialization: bool = False,
     ) -> typing.Union[
         ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization
+        api_client.ApiResponseWithoutDeserialization,
     ]:
+        ...
+
+    def place_order(
+        self,
+        body,
+        content_type = 'application/json',
+        accept_content_types = _all_accept_content_types,
+        stream = False,
+        timeout = None,
+        skip_deserialization = False,
+    ):
         return self._place_order_oapg(
             body=body,
             content_type=content_type,
@@ -171,9 +247,36 @@ class PlaceOrder(BaseApi):
 class ApiForpost(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
+    @typing.overload
     def post(
-        self: BaseApi,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, ],
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[False] = False,
+    ) -> typing.Union[
+        ApiResponseFor200,
+    ]:
+        ...
+
+    @typing.overload
+    def post(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[True] = True,
+    ) -> api_client.ApiResponseWithoutDeserialization:
+        ...
+
+    @typing.overload
+    def post(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,],
         content_type: str = 'application/json',
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -181,8 +284,19 @@ class ApiForpost(BaseApi):
         skip_deserialization: bool = False,
     ) -> typing.Union[
         ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization
+        api_client.ApiResponseWithoutDeserialization,
     ]:
+        ...
+
+    def post(
+        self,
+        body,
+        content_type = 'application/json',
+        accept_content_types = _all_accept_content_types,
+        stream = False,
+        timeout = None,
+        skip_deserialization = False,
+    ):
         return self._place_order_oapg(
             body=body,
             content_type=content_type,

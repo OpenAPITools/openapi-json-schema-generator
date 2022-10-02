@@ -66,9 +66,36 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
 
+    @typing.overload
     def _boolean_oapg(
-        self: api_client.Api,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, bool, schemas.Unset] = schemas.unset,
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,bool, schemas.Unset] = schemas.unset,
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[False] = False,
+    ) -> typing.Union[
+        ApiResponseFor200,
+    ]:
+        ...
+
+    @typing.overload
+    def _boolean_oapg(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,bool, schemas.Unset] = schemas.unset,
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[True] = True,
+    ) -> api_client.ApiResponseWithoutDeserialization:
+        ...
+
+    @typing.overload
+    def _boolean_oapg(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,bool, schemas.Unset] = schemas.unset,
         content_type: str = 'application/json',
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -76,8 +103,19 @@ class BaseApi(api_client.Api):
         skip_deserialization: bool = False,
     ) -> typing.Union[
         ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization
+        api_client.ApiResponseWithoutDeserialization,
     ]:
+        ...
+
+    def _boolean_oapg(
+        self,
+        body,
+        content_type = 'application/json',
+        accept_content_types = _all_accept_content_types,
+        stream = False,
+        timeout = None,
+        skip_deserialization = False,
+    ):
         """
         :param skip_deserialization: If true then api_response.response will be set but
             api_response.body and api_response.headers will not be deserialized into schema
@@ -128,9 +166,36 @@ class BaseApi(api_client.Api):
 class Boolean(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
+    @typing.overload
     def boolean(
-        self: BaseApi,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, bool, schemas.Unset] = schemas.unset,
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,bool, schemas.Unset] = schemas.unset,
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[False] = False,
+    ) -> typing.Union[
+        ApiResponseFor200,
+    ]:
+        ...
+
+    @typing.overload
+    def boolean(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,bool, schemas.Unset] = schemas.unset,
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[True] = True,
+    ) -> api_client.ApiResponseWithoutDeserialization:
+        ...
+
+    @typing.overload
+    def boolean(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,bool, schemas.Unset] = schemas.unset,
         content_type: str = 'application/json',
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -138,8 +203,19 @@ class Boolean(BaseApi):
         skip_deserialization: bool = False,
     ) -> typing.Union[
         ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization
+        api_client.ApiResponseWithoutDeserialization,
     ]:
+        ...
+
+    def boolean(
+        self,
+        body,
+        content_type = 'application/json',
+        accept_content_types = _all_accept_content_types,
+        stream = False,
+        timeout = None,
+        skip_deserialization = False,
+    ):
         return self._boolean_oapg(
             body=body,
             content_type=content_type,
@@ -153,9 +229,36 @@ class Boolean(BaseApi):
 class ApiForpost(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
+    @typing.overload
     def post(
-        self: BaseApi,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, bool, schemas.Unset] = schemas.unset,
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,bool, schemas.Unset] = schemas.unset,
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[False] = False,
+    ) -> typing.Union[
+        ApiResponseFor200,
+    ]:
+        ...
+
+    @typing.overload
+    def post(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,bool, schemas.Unset] = schemas.unset,
+        content_type: str = 'application/json',
+        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
+        stream: bool = False,
+        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
+        skip_deserialization: typing_extensions.Literal[True] = True,
+    ) -> api_client.ApiResponseWithoutDeserialization:
+        ...
+
+    @typing.overload
+    def post(
+        self,
+        body: typing.Union[SchemaForRequestBodyApplicationJson,bool, schemas.Unset] = schemas.unset,
         content_type: str = 'application/json',
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -163,8 +266,19 @@ class ApiForpost(BaseApi):
         skip_deserialization: bool = False,
     ) -> typing.Union[
         ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization
+        api_client.ApiResponseWithoutDeserialization,
     ]:
+        ...
+
+    def post(
+        self,
+        body,
+        content_type = 'application/json',
+        accept_content_types = _all_accept_content_types,
+        stream = False,
+        timeout = None,
+        skip_deserialization = False,
+    ):
         return self._boolean_oapg(
             body=body,
             content_type=content_type,
