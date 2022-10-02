@@ -1,5 +1,9 @@
 <h1 align="center">OpenAPI JSON Schema Generator</h1>
 
+# Repo Location Update
+On Oct 2nd 2022, Justin (@spacether), who's been leading this project openapi-json-schema-generator with the goal to make the output 100% compliant with JSON schema as part of the OpenAPI 3.1 specification with a focus on complex cases (top-down approach), has decided to run this project in another organization account [openapi-json-schema-tools](https://github.com/openapi-json-schema-tools) instead so that he can fine tune the pace of the projects to align with different goals and requirements. Please follow [openapi-json-schema-tools/openapi-json-schema-generator](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator) if you would like to take advantage of the latest works (enhancements, bug fixes)  by Justin.
+
+
 | **IMPORTANT: before the first release, one will need to build the project locally to use the enhancements, bug fixes in the latest master** |
 | --- |
 
