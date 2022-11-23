@@ -43,8 +43,7 @@ This repo is based on v6.2.0 of OpenAPI Generator. This project focuses on makin
   - [3 - Usage](#3---usage)
     - [3.1 - Customization](#31---customization)
     - [3.2 - Workflow Integration](#32---workflow-integration-maven-gradle-github-cicd)
-    - [3.3 - Online Generator](#33---online-generator)
-    - [3.4 - License Information on Generated Code](#34---license-information-on-generated-code)
+    - [3.3 - License Information on Generated Code](#34---license-information-on-generated-code)
   - [4 - About Us](#4---about-us)
     - [4.1 - History of this Project](#41---history-of-this-project)
   - [5 - License](#6---license)
@@ -104,39 +103,6 @@ docker run --rm -v "${PWD}:/local" openapitools/openapi-json-schema-generator-cl
 
 The generated code will be located under `./out/python` in the current directory.
 
-#### Online Docker Image
-
-The openapi-json-schema-generator-online image can act as a self-hosted web application and API for generating code. This container can be incorporated into a CI pipeline, and requires at least two HTTP requests and some docker orchestration to access generated code.
-
-Example usage:
-
-```sh
-# Start container at port 8888 and save the container id
-> CID=$(docker run -d -p 8888:8080 openapitools/openapi-json-schema-generator-online)
-
-# allow for startup
-> sleep 10
-
-# Get the IP of the running container (optional)
-GEN_IP=$(docker inspect --format '{{.NetworkSettings.IPAddress}}'  $CID)
-
-# Execute an HTTP request to generate a Ruby client
-> curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' \
--d '{"openAPIUrl": "https://raw.githubusercontent.com/openapitools/openapi-json-schema-generator/master/modules/openapi-json-schema-generator/src/test/resources/3_0/petstore.yaml"}' \
-'http://localhost:8888/api/gen/clients/python'
-
-{"code":"c2d483.3.4672-40e9-91df-b9ffd18d22b8","link":"http://localhost:8888/api/gen/download/c2d483.3.4672-40e9-91df-b9ffd18d22b8"}
-
-# Download the generated zip file
-> wget http://localhost:8888/api/gen/download/c2d483.3.4672-40e9-91df-b9ffd18d22b8
-
-# Unzip the file
-> unzip c2d483.3.4672-40e9-91df-b9ffd18d22b8
-
-# Shutdown the openapi generator image
-> docker stop $CID && docker rm $CID
-```
-
 #### Development in docker
 
 You can use `run-in-docker.sh` to do all development. This script maps your local repository to `/gen`
@@ -170,10 +136,6 @@ If an error like this occurs, just execute the **mvn clean install -U** command:
 ```sh
 ./run-in-docker.sh mvn clean install -U
 ```
-
-> Failed to execute goal org.fortasoft:gradle-maven-plugin:1.0.8:invoke (default) on project openapi-json-schema-generator-gradle-plugin-mvn-wrapper: org.gradle.tooling.BuildException: Could not execute build using Gradle distribution 'https://services.gradle.org/distributions/gradle-4.7-bin.zip'
-
-Right now: no solution for this one :|
 
 #### Run Docker in Vagrant
 Prerequisite: install [Vagrant](https://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
@@ -292,11 +254,7 @@ Please refer to [customization.md](docs/customization.md) on how to customize th
 
 Please refer to [integration.md](docs/integration.md) on how to integrate OpenAPI generator with Maven, Gradle,  Github and CI/CD.
 
-### [3.3 - Online Generator](#table-of-contents)
-
-Please refer to [online.md](docs/online.md) on how to run and use the `openapi-json-schema-generator-online` - a web service for this project.
-
-### [3.4 - License information on Generated Code](#table-of-contents)
+### [3.3 - License information on Generated Code](#table-of-contents)
 
 This project is intended as a benefit for users of the Open API Specification.  The project itself has the [License](#license) as specified. In addition, please understand the following points:
 
