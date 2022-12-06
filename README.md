@@ -1,4 +1,4 @@
-# [Repo Location Update](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator)
+# [Repo Location Update, Click Here for Latest Code](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator)
 On Oct 2nd 2022, Justin (@spacether), who's been leading this project with the goal to make the output 100% compliant with javascript object notation schema as part of the OpenAPI 3.1 specification with a focus on complex cases (top-down approach), has decided to run this project in another organization account [new org](https://github.com/openapi-json-schema-tools) instead so that he can fine tune the pace of the projects to align with different goals and requirements. Please follow [the new repo here](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator) if you would like to take advantage of the latest works (enhancements, bug fixes)  by Justin.
 
 
