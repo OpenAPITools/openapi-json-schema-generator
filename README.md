@@ -1,5 +1,5 @@
-# Repo Location Update
-On Oct 2nd 2022, Justin (@spacether), who's been leading this project with the goal to make the output 100% compliant with JSON schema as part of the OpenAPI 3.1 specification with a focus on complex cases (top-down approach), has decided to run this project in another organization account [new org](https://github.com/openapi-json-schema-tools) instead so that he can fine tune the pace of the projects to align with different goals and requirements. Please follow [the new repo here](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator) if you would like to take advantage of the latest works (enhancements, bug fixes)  by Justin.
+# [Repo Location Update](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator)
+On Oct 2nd 2022, Justin (@spacether), who's been leading this project with the goal to make the output 100% compliant with javascript object notation schema as part of the OpenAPI 3.1 specification with a focus on complex cases (top-down approach), has decided to run this project in another organization account [new org](https://github.com/openapi-json-schema-tools) instead so that he can fine tune the pace of the projects to align with different goals and requirements. Please follow [the new repo here](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator) if you would like to take advantage of the latest works (enhancements, bug fixes)  by Justin.
 
 
 | **IMPORTANT: before the first release, one will need to build the project locally to use the enhancements, bug fixes in the latest master** |
@@ -22,14 +22,15 @@ On Oct 2nd 2022, Justin (@spacether), who's been leading this project with the g
 </div>
 
 ## Overview
-This project allows auto-generation of API client libraries (SDK generation) with a focus on JSON Schema given an [OpenAPI Spec](https://github.com/OAI/OpenAPI-Specification) (3.0 are supported). Currently, the following languages/frameworks are supported:
+This project allows auto-generation of API client libraries (SDK generation) with a focus on javascript object notation Schema given an [OpenAPI Spec](https://github.com/OAI/OpenAPI-Specification) (3.0 are supported). Currently, the following languages/frameworks are supported:
 
 - python
 
 
 ## Why this repo exists
 
-This repo is based on v6.2.0 of OpenAPI Generator. This project focuses on making the output 100% compliant with JSON schema as part of the OpenAPI 3.1 specification with a focus on complex cases (top-down approach). The goal is to fully support everything defined in JSON schema so that developers can leverage JSON schema as well as OpenAPI specification in their API design. Building here allows for more rapid progress supporting new features in OpenAPI 3.X without having to support many older generators which don't use the new features.
+This repo is based on v6.2.0 of OpenAPI Generator. This project focuses on making the output 100% compliant with javascript object notation schema as part of the OpenAPI 3.1 specification with a focus on complex cases (top-down approach). The goal is to fully support everything defined in javascript object notation
+schema so that developers can leverage javascript object notation schema as well as OpenAPI specification in their API design. Building here allows for more rapid progress supporting new features in OpenAPI 3.X without having to support many older generators which don't use the new features.
 
 ## Table of contents
 
@@ -265,7 +266,7 @@ When code is generated from this project, it shall be considered **AS IS** and o
 
 ### [4 - History of this Project](#table-of-contents)
 
-This project is based on OpenAPI Generator v6.2.0. It focuses on JSON schema support and the output is designed to be 100% compliance with JSON Schema.
+This project is based on OpenAPI Generator v6.2.0. It focuses on javascript object notation schema support and the output is designed to be 100% compliance with javascript object notation Schema.
 
 ## [5 - License](#table-of-contents)
 -------
